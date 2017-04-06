@@ -8,4 +8,5 @@
     <string name="next">next</string>
     <string name="toast_save_complete">Save successed!</string>
     <string name="toast_save_failed">Save failed!</string>
+    <string name="refresh">refresh</string>
 </resources>

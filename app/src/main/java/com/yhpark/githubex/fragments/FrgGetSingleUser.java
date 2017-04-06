@@ -1,5 +1,6 @@
 package com.yhpark.githubex.fragments;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -101,6 +102,15 @@ public class FrgGetSingleUser extends RetrofitFragment {
     }
 
     AsyncTask saveLoader = new AsyncTask() {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.show();
+        }
+
         @Override
         protected Object doInBackground(Object[] params) {
             return DBHelper.getInstance(getActivity()).insertUserData(result);
@@ -109,6 +119,10 @@ public class FrgGetSingleUser extends RetrofitFragment {
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+
             if (isAdded()) {
                 Toast.makeText(getActivity(), (boolean) o ? getString(R.string.toast_save_complete) : getString(R.string.toast_save_failed), Toast.LENGTH_SHORT).show();
             }
