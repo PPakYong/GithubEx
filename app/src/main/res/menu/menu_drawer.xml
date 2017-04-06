@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_notice"
+        android:id="@+id/menu_get_single_user"
         android:numericShortcut="0"
         android:title="getSingleUser()" />
     <item
-        android:id="@+id/navigation_timeline"
+        android:id="@+id/menu_get_auth_user"
         android:numericShortcut="1"
         android:title="getAuthUser()" />
     <item
-        android:id="@+id/navigation_schedule"
+        android:id="@+id/menu_update_auth_user"
         android:numericShortcut="2"
         android:title="updateAuthUser() " />
     <item
-        android:id="@+id/navigation_emergency"
+        android:id="@+id/menu_get_all_user"
         android:numericShortcut="3"
         android:title="getAllUser()" />
 </menu>
