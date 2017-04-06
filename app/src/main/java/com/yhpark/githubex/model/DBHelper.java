@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 /**
- * Created by ppyh0 on 2017-04-06.
+ * Created by YongHyeon on 2017-04-06.
  */
 
 public class DBHelper extends SQLiteOpenHelper {

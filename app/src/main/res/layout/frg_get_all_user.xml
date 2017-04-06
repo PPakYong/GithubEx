@@ -17,7 +17,8 @@
             android:layout_weight="1"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:text="0" />
 
         <Button
             android:id="@+id/btSearch"

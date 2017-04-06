@@ -35,5 +35,6 @@ public interface GitHubUsers {
     @GET("/users")
     Call<List<UserResult>> getAllUsers(
             @Query("since") String since,
-            @Query("per_page") int page);
+            @Query("page") int page,
+            @Query("per_page") int per_page);
 }

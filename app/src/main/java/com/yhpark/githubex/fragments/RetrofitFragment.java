@@ -1,6 +1,6 @@
 package com.yhpark.githubex.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,7 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by ppyh0 on 2017-04-07.
+ * Created by YongHyeon on 2017-04-07.
  */
 
 public abstract class RetrofitFragment extends Fragment implements Callback {

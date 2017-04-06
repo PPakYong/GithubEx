@@ -1,20 +1,23 @@
 package com.yhpark.githubex.adapter;
 
+import android.support.v4.app.Fragment;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.yhpark.githubex.MainActivity;
 import com.yhpark.githubex.R;
+import com.yhpark.githubex.fragments.FrgUserDetail;
 import com.yhpark.githubex.model.RecyclerViewHolder;
 import com.yhpark.githubex.model.UserResult;
 
 import java.util.List;
 
 /**
- * Created by ppyh0 on 2017-04-06.
+ * Created by YongHyeon on 2017-04-06.
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
@@ -38,7 +41,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
         ((View) holder.tvResultItem.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, results.get(position).login, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, results.get(position).login, Toast.LENGTH_SHORT).show();
+                if (context instanceof MainActivity) {
+                    MainActivity activity = (MainActivity) context;
+
+                    Fragment frgUserDetail = new FrgUserDetail();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("result", results.get(position));
+                    frgUserDetail.setArguments(bundle);
+                    activity.getSupportFragmentManager().beginTransaction().add(activity.getFlFragmentView().getId(), frgUserDetail, "FrgUserDetail").commit();
+                }
             }
         });
     }

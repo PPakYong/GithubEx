@@ -1,18 +1,22 @@
 package com.yhpark.githubex.fragments;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.yhpark.githubex.R;
+import com.yhpark.githubex.model.UserResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -37,11 +41,22 @@ public class FrgUserDetail extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getArguments() != null) {
+            UserResult result = getArguments().getParcelable("result");
+            tvDetail.setText(new Gson().toJson(result).toString().replaceAll(",", ",\n"));
+        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.btClose)
+    public void onViewClicked() {
+        if (isAdded()) {
+            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+        }
     }
 }

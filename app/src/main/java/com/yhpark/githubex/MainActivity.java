@@ -52,16 +52,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         flFragmentView.removeAllViews();
         switch (item.getItemId()) {
             case R.id.menu_get_single_user:
-                getFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetSingleUser(), "").commit();
+                getSupportFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetSingleUser(), "FrgGetSingleUser").commit();
                 break;
             case R.id.menu_get_auth_user:
-                getFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetAuthUser(), "").commit();
+                getSupportFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetAuthUser(), "FrgGetAuthUser").commit();
                 break;
             case R.id.menu_update_auth_user:
-                getFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgUpdateAuthUser(), "").commit();
+                getSupportFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgUpdateAuthUser(), "FrgUpdateAuthUser").commit();
                 break;
             case R.id.menu_get_all_user:
-                getFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetAllUser(), "").commit();
+                getSupportFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetAllUser(), "FrgGetAllUser").commit();
                 break;
 
             default:
@@ -70,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         dlMain.closeDrawers();
         return false;
+    }
+
+    public FrameLayout getFlFragmentView() {
+        return flFragmentView;
     }
 
     @Override

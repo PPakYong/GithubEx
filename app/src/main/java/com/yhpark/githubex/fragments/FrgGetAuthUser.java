@@ -1,6 +1,6 @@
 package com.yhpark.githubex.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;

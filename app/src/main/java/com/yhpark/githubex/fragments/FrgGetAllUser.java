@@ -49,7 +49,8 @@ public class FrgGetAllUser extends RetrofitFragment {
     @BindView(R.id.llResult)
     LinearLayout llResult;
 
-    final int cnt_page = 100;
+    int currentPage = 1;
+    final int per_page = 100;
 
     Unbinder unbinder;
 
@@ -86,7 +87,7 @@ public class FrgGetAllUser extends RetrofitFragment {
             Toast.makeText(getActivity(), getString(R.string.toast_empty_since), Toast.LENGTH_SHORT).show();
         } else {
             GitHubUsers api = (GitHubUsers) new RetrofitClient<>().getClient(GitHubUsers.class);
-            api.getAllUsers(etSince.getText().toString(), cnt_page).enqueue(this);
+            api.getAllUsers(etSince.getText().toString(), currentPage, per_page).enqueue(this);
         }
     }
 
@@ -106,6 +107,7 @@ public class FrgGetAllUser extends RetrofitFragment {
                 DBHelper.getInstance(getActivity()).insertUserData(result);
                 break;
             case R.id.btNext:
+                currentPage++;
                 requestEvent();
                 break;
         }
