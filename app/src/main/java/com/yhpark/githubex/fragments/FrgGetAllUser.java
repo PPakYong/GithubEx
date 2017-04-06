@@ -1,5 +1,6 @@
 package com.yhpark.githubex.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -104,7 +105,7 @@ public class FrgGetAllUser extends RetrofitFragment {
                 requestEvent();
                 break;
             case R.id.btSave:
-                DBHelper.getInstance(getActivity()).insertUserData(result);
+                saveLoader.execute();
                 break;
             case R.id.btNext:
                 currentPage++;
@@ -112,4 +113,19 @@ public class FrgGetAllUser extends RetrofitFragment {
                 break;
         }
     }
+
+    AsyncTask saveLoader = new AsyncTask() {
+        @Override
+        protected Object doInBackground(Object[] params) {
+            return DBHelper.getInstance(getActivity()).insertUserData(result);
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            if (isAdded()) {
+                Toast.makeText(getActivity(), (boolean) o ? getString(R.string.toast_save_complete) : getString(R.string.toast_save_failed), Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 }

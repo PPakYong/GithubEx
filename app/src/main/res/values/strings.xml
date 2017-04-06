@@ -6,4 +6,6 @@
     <string name="toast_empty_since">Since is empty.</string>
     <string name="close">close</string>
     <string name="next">next</string>
+    <string name="toast_save_complete">Save successed!</string>
+    <string name="toast_save_failed">Save failed!</string>
 </resources>

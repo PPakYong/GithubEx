@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.yhpark.githubex.fragments.FrgGetAllUser;
 import com.yhpark.githubex.fragments.FrgGetAuthUser;
+import com.yhpark.githubex.fragments.FrgGetDBUser;
 import com.yhpark.githubex.fragments.FrgGetSingleUser;
 import com.yhpark.githubex.fragments.FrgUpdateAuthUser;
 import com.yhpark.githubex.model.DBHelper;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
 
         naviView.setNavigationItemSelectedListener(this);
+
+        getSupportFragmentManager().beginTransaction().add(flFragmentView.getId(), new FrgGetDBUser(), "FrgGetDBUser").commit();
     }
 
     @Override

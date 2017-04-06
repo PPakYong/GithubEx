@@ -1,11 +1,13 @@
 package com.yhpark.githubex.model;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public synchronized void insertUserData(UserResult result) {
+    public synchronized boolean insertUserData(UserResult result) {
         if (result == null) {
             throw new NullPointerException("result is null.");
         }
@@ -55,11 +57,14 @@ public class DBHelper extends SQLiteOpenHelper {
             db.endTransaction();
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
         }
+
+        return true;
     }
 
-    public synchronized void insertUserData(List<UserResult> resultList) {
+    public synchronized boolean insertUserData(List<UserResult> resultList) {
         if (resultList == null) {
             throw new NullPointerException("resultList is null.");
         }
@@ -79,7 +84,32 @@ public class DBHelper extends SQLiteOpenHelper {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
         }
+
+        return true;
     }
+
+    public List<UserResult> getDBUser() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = null;
+        List<UserResult> list = new ArrayList<>();
+
+        try {
+            String sql = "select * from TBL_USER";
+            cursor = db.rawQuery(sql, null);
+            cursor.moveToFirst();
+
+            while (cursor.moveToNext()) {
+                list.add(new Gson().fromJson(cursor.getString(0), UserResult.class));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    ;
 }
